@@ -19,15 +19,15 @@ This project was built to solve the “Get Data – Display Data – Make it Fan
 -----------------------------------------------------------------------------------------------------------------------
 ### **Tech Stack:**
 > Python 3.8+
-PyQt5 – GUI framework
-pandas – Data handling
-numpy – Math operations
-matplotlib – Graph plotting
-scipy – Savitzky–Golay smoothing
+> PyQt5 – GUI framework
+> pandas – Data handling
+> numpy – Math operations
+> matplotlib – Graph plotting
+> scipy – Savitzky–Golay smoothing
 -----------------------------------------------------------------------------------------------------------------------
 ### **Installation:**
 1) Clone this repo:
-`git clone https://github.com/your-username/flight-visualizer.git
+`git clone [title](https://github.com/your-username/flight-visualizer.git)
 cd flight-visualizer`
 2) Create & activate a virtual environment:
 `python3 -m venv venv
@@ -37,11 +37,11 @@ source venv/bin/activate`
 -----------------------------------------------------------------------------------------------------------------------
 ### **Dependencies:**
 > PyQt5
-numpy
-pandas
-matplotlib
-scipy
-openpyxl
+> numpy
+> pandas
+> matplotlib
+> scipy
+> openpyxl
 -----------------------------------------------------------------------------------------------------------------------
 **Usage:**
 1) Run the program:
