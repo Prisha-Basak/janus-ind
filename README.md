@@ -1,4 +1,5 @@
-### **Overview:** This project was built to solve the “Get Data – Display Data – Make it Fantastic” challenge.
+## **Overview:** 
+This project was built to solve the “Get Data – Display Data – Make it Fantastic” challenge.
 1) Extract raw pressure data from test-flight logs (Excel).
 2) Convert pressure → altitude using the barometric formula.
 3) Visualize altitude-time and velocity-time data clearly.
