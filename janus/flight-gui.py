@@ -1,13 +1,12 @@
 """Name: Prisha Basak
 Student ID: 2025A8PS1075H"""
 
+#Making imports
 import sys, os
 import numpy as np
 import pandas as pd
-
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, QLabel, QSpinBox, QCheckBox, QGroupBox, QFormLayout)
 from PyQt5.QtCore import QTimer
-
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -18,8 +17,23 @@ except ImportError:
     SCIPY_AVAILABLE = False
 
 
-# --- Utility functions ---
 def read_excel_autodetect(path):
+    
+    """
+    Reads the first sheet of an Excel file and the pressure data.
+    Perfoms:
+      1. Load the first sheet
+      2. Rename the 'Pressure (Pa)' column to 'pressure_pa' for convenience
+      3. Convert the pressure column to numeric:
+         - Ensure it's treated as string first
+         - Remove commas/spaces
+         - Convert to float/int
+      4. Drop rows where 'pressure_pa' is missing.
+      5. Reset the index for a clean DataFrame.
+    Returns:
+      pandas.DataFrame with cleaned 'pressure_pa' column.
+    """
+    
     df = pd.read_excel(path, sheet_name=0)
     df = df.rename(columns={"Pressure (Pa)": "pressure_pa"})
     df['pressure_pa'] = pd.to_numeric(df['pressure_pa'].astype(str).str.replace(',', '').str.strip())
@@ -27,6 +41,18 @@ def read_excel_autodetect(path):
     return df
 
 def pressure_to_altitude(df):
+    
+     """
+    Converts pressure data into altitude using a barometric formula.
+    Performs:
+      1. Copy the input data to avoid modifying the original.
+      2. Ensure 'pressure_pa' is numeric and coerce the invalid entries to 'Not A Number'
+      3. Interpolate missing values, then forward-fill and back-fill any gaps.
+      4. Apply the barometric formula to compute altitude (`alt_raw_m`).
+    Returns:
+      pandas.DataFrame with an added 'alt_raw_m' column (altitude in meters).
+    """
+    
     T, L, R, G, P = 288.15, 0.0065, 287.05, 9.80665, 101325.0
     expo = (R * L) / G
     df = df.copy()
@@ -36,6 +62,22 @@ def pressure_to_altitude(df):
     return df
 
 def smooth_altitude(df, med_w=5, mean_w=5, use_savgol=True):
+    
+     """
+    Smooths raw altitude data using a combination of rolling filters and Savitzky-Golay.
+    Performs:
+      1. (`med_w` window) -> reduces noise/spikes.
+      2. (`mean_w` window) -> smooths the median output.
+      3. Apply Savitzky–Golay filter (quadratic, polyorder=2) for extra smoothing.
+      4. Store the final smoothed altitude in `alt_clean`.
+    Returns:
+      pandas.DataFrame with added columns:
+        - 'alt_med': Median-smoothed altitude
+        - 'alt_smooth': Mean-smoothed altitude
+        - 'alt_sg': Savitzky-Golay smoothed altitude
+        - 'alt_clean': Final cleaned altitude
+    """
+    
     df = df.copy()
     df['alt_med'] = df['alt_raw_m'].rolling(med_w, center=True, min_periods=1).median()
     df['alt_smooth'] = df['alt_med'].rolling(mean_w, center=True, min_periods=1).mean()
@@ -51,6 +93,20 @@ def smooth_altitude(df, med_w=5, mean_w=5, use_savgol=True):
     return df
 
 def compute_velocity(df):
+
+      """
+    Computes velocity (m/s) from altitude data using numerical gradients.
+    Performs:
+      1. Create a synthetic time axis `time_s` (0, 1, 2, .... so on, in seconds).
+      2. Find raw velocity (`vel_raw_mps`) as the derivative of 'alt_raw_m'.
+      3. Find cleaned velocity (`vel_clean_mps`) as the derivative of 'alt_clean'. 
+    Returns:
+      pandas.DataFrame with added columns:
+        - 'time_s': Time index in seconds
+        - 'vel_raw_mps': Velocity from raw altitude (m/s)
+        - 'vel_clean_mps': Velocity from smoothed/clean altitude (m/s)
+    """
+
     df = df.copy()
     df['time_s'] = np.arange(len(df))
     df['vel_raw_mps'] = np.gradient(df['alt_raw_m'], df['time_s'])
@@ -58,7 +114,7 @@ def compute_velocity(df):
     return df
 
 
-# --- Matplotlib canvas ---
+# Matplotlib setup
 class MplCanvas(FigureCanvas):
     def __init__(self, parent=None, width=9, height=5, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi, tight_layout=True)
@@ -67,7 +123,7 @@ class MplCanvas(FigureCanvas):
         self.setParent(parent)
 
 
-# --- GUI ---
+# GUI setup
 class FlightVisualizer(QMainWindow):
     def __init__(self):
         super().__init__()
