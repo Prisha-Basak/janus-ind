@@ -18,12 +18,7 @@ This project was built to solve the “Get Data – Display Data – Make it Fan
 2) Velocity vs Time
 -----------------------------------------------------------------------------------------------------------------------
 ### **Tech Stack:**
-> Python 3.8+
-> PyQt5 – GUI framework
-> pandas – Data handling
-> numpy – Math operations
-> matplotlib – Graph plotting
-> scipy – Savitzky–Golay smoothing
+> Python 3.8+ | PyQt5 – GUI framework | pandas – Data handling | numpy – Math operations | matplotlib – Graph plotting | scipy – Savitzky–Golay smoothing
 -----------------------------------------------------------------------------------------------------------------------
 ### **Installation:**
 1) Clone this repo:
@@ -36,12 +31,7 @@ source venv/bin/activate`
 `pip install -r requirements.txt`
 -----------------------------------------------------------------------------------------------------------------------
 ### **Dependencies:**
-> PyQt5
-> numpy
-> pandas
-> matplotlib
-> scipy
-> openpyxl
+> PyQt5 | numpy | pandas | matplotlib | scipy | openpyxl
 -----------------------------------------------------------------------------------------------------------------------
 **Usage:**
 1) Run the program:
