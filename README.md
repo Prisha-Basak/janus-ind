@@ -7,9 +7,9 @@ This project was built to solve the “Get Data – Display Data – Make it Fan
 5) Make the visualization fantastic by animating the graph, adding a new data point every second.
 -----------------------------------------------------------------------------------------------------------------------
 ### **Features:**
-1)Excel file import (auto-detects pressure column).
-2)Altitude & velocity calculation using physics formulas.
-3)Noise reduction with median filter, moving average, and optional Savitzky–Golay smoothing (if scipy is installed).
+1) Excel file import (auto-detects pressure column).
+2) Altitude & velocity calculation using physics formulas.
+3) Noise reduction with median filter, moving average, and optional Savitzky–Golay smoothing (if scipy is installed).
 4) Real-time animation: data points added sequentially to simulate playback.
 5) Interactive GUI built with PyQt5.
 -----------------------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ This project was built to solve the “Get Data – Display Data – Make it Fan
 2) Velocity vs Time
 -----------------------------------------------------------------------------------------------------------------------
 ### **Tech Stack:**
-Python 3.8+
+> Python 3.8+
 PyQt5 – GUI framework
 pandas – Data handling
 numpy – Math operations
@@ -36,7 +36,7 @@ source venv/bin/activate`
 `pip install -r requirements.txt`
 -----------------------------------------------------------------------------------------------------------------------
 ### **Dependencies:**
-PyQt5
+> PyQt5
 numpy
 pandas
 matplotlib
