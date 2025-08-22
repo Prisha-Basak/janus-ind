@@ -1,7 +1,7 @@
 ## **Overview:** 
 This project was built to solve the “Fantastic Four: First Launch” challenge.
-1) Extract raw pressure data from test-flight logs (Excel).
-2) Convert pressure → altitude using the barometric formula.
+1) Extract raw pressure data from test-flight logs from Excel.
+2) Convert pressure to altitude using the barometric formula.
 3) Visualize altitude-time and velocity-time data clearly.
 4) Handle noisy sensor data with smoothing filters.
 5) Make the visualization fantastic by animating the graph, adding a new data point every second.
@@ -22,8 +22,8 @@ This project was built to solve the “Fantastic Four: First Launch” challenge
 -----------------------------------------------------------------------------------------------------------------------
 ### **Installation:**
 1) Clone this repo:
-`git clone (https://github.com/your-username/flight-visualizer.git)
-cd flight-visualizer`
+`git clone (https://github.com/Prisha-Basak/janus-ind.git)
+cd janus`
 2) Create & activate a virtual environment:
 `python3 -m venv venv
 source venv/bin/activate`
