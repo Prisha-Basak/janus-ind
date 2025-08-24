@@ -22,7 +22,7 @@ This project was built to solve the “Fantastic Four: First Launch” challenge
 -----------------------------------------------------------------------------------------------------------------------
 ### **Installation:**
 1) Clone this repo:
-`git clone (https://github.com/Prisha-Basak/janus-ind.git)
+`git clone https://github.com/Prisha-Basak/janus-ind.git
 cd janus`
 2) Create & activate a virtual environment:
 `python3 -m venv venv
