@@ -33,7 +33,7 @@ source venv/bin/activate`
 ### **Dependencies:**
 > PyQt5 | numpy | pandas | matplotlib | scipy | openpyxl
 -----------------------------------------------------------------------------------------------------------------------
-**Usage:**
+***Usage:***
 1) Run the program:
 `python main.py`
 2) In the GUI:
