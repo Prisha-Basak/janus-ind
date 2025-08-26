@@ -1,5 +1,6 @@
 //Name: Prisha Basak
 //Student ID: 2025A8PS1075H
+// LINK TO PROJECT: https://www.tinkercad.com/things/ekfX6SutrZE-hailjanus
 
 //pin connections
 const int forcepin = A0;      //force sensor
